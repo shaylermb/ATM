@@ -5,6 +5,12 @@ public class UserAccount {
 	private String name;
 	private String pin;
 
+	public UserAccount(String name, String pin, double balance) {
+		this.name = name;
+		this.pin = pin;
+		this.balance = balance;
+	}
+
 	public double getBalance() {
 		return balance;
 	}
@@ -17,17 +23,19 @@ public class UserAccount {
 		return pin;
 	}
 
-	public void setPin(String pin) {
-		if (pin.length() = 4) {
+	public boolean setPin(String pin) {
+		if (pin.length() == 4) {
 			this.pin = pin;
+			return true;
 		}
+		return false;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setBalance(int newbalance) {
+	public void setBalance(double newbalance) {
 		this.balance = newbalance;
 	}
 
@@ -44,4 +52,4 @@ public class UserAccount {
 8) Can I withdraw more money than I have?
 9) How does this work?
 10) How do you use classes?
-/*
+*/

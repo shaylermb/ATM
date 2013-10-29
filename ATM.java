@@ -4,48 +4,63 @@ public class ATM {
 	private UserAccount aAccount;
 	Scanner reader = new Scanner(System.in);
 	
-
 	public ATM(UserAccount[] accounts) {
 		this.accounts = accounts;
 	}
-	public login(){
+	public void login(){
 		System.out.println("Login: ");
 		String name = reader.next();
 		System.out.println("PIN: ");
 		String pin = reader.next();
 		for (int i = 0; i<accounts.length; i++) {
-			if(name == accounts[i].getName && password = accounts[i].getPin){
+			if(name.equals(accounts[i].getName()) && pin.equals(accounts[i].getPin())){
 				aAccount = accounts[i];
-				return true;
-			} else {
-				System.out.println("invalid login");
-				return false;
-			}
+				uInterface();
+			} 
 		}
+		System.out.println("invalid login");
+		login();
 	}
-	public interface(){
-		System.out.println("check balance");
-		System.out.println("withdraw funds");
-		System.out.println("change name");
-		System.out.println("change PIN");
-		System.out.println("logout");
-		String input = reader.next();
-		String balance = "check balance";
-		String funds = "withdraw funds";
-		String pin = "change pin";
-		String cname = "change name";
-		String logout = "logout";
-		if (input == cname) {
+	public void uInterface() {
+		System.out.println("Check balance press 1");
+		System.out.println("withdraw funds press 2");
+		System.out.println("change name press 3");
+		System.out.println("change PIN press 4");
+		System.out.println("logout press 5");
+		int input = reader.nextInt();
+		
+		if (input == 1) {
+			System.out.println("Balance is: " + aAccount.getBalance());
+			uInterface();
+		} else if(input == 2){
+			System.out.println("How much do you want to withdraw? ");
+			double money = reader.nextDouble();
+			double x = aAccount.getBalance() - money;
+			aAccount.setBalance(x);
+			uInterface();
+		} else if (input == 3){
+			System.out.println("New name? ");
+			String nName = reader.next();
+			aAccount.setName(nName);
+			uInterface();
+		} else if (input == 4){
+			System.out.println("New PIN? ");
+			String nPIN = reader.next();
+			if (nPIN.length() == 4) {
+				aAccount.setPin(nPIN);
+			} else {
+				System.out.println("Error not 4 numbers");
+			}
 			
-		} else if(input == balance){
-			System.out.println("Balance is: " + getBalance(aAccount));
-		} else if (input == funds){
-			System.out.println("Withdraw");
-		} else if (input = pin){
-
-		} else if (input = logout){
-
+			uInterface();
+		} else if (input == 5){
+			login();
+		} else {
+			System.out.println("Error. Try a different number");
+			uInterface();
 		}
+
+
 
 	}
 
